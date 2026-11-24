@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TBR Dice</title>
+  <meta name="description" content="Roll two dice to pick the genre and medium of your next read.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="term">
+    <header class="bar">
+      <span class="bar-title">tbr-dice — ~/reading</span>
+      <span class="bar-dots" aria-hidden="true">■ ■ ■</span>
+    </header>
+
+    <section class="screen">
+      <h1 class="logo">TBR<span>_</span>DICE</h1>
+      <p class="line"><span class="ps">$</span> ./tbr-dice --roll</p>
+      <p class="line dim">&gt; Can't pick your next read? Let the dice decide.</p>
+
+      <button id="roll" class="roll" type="button">&#9654; ROLL THE DICE</button>
+
+      <div class="dice">
+        <div class="die" data-die="genre" role="button" tabindex="0" aria-label="Genre die. Open the editor to change its faces.">
+          <span class="die-name">GENRE</span>
+          <div class="scene"><div class="tilt"><div class="cube"></div></div></div>
+          <div class="shadow"></div>
+          <span class="hint">[g] edit faces</span>
+        </div>
+        <div class="die" data-die="medium" role="button" tabindex="0" aria-label="Medium die. Open the editor to change its faces.">
+          <span class="die-name">MEDIUM</span>
+          <div class="scene"><div class="tilt"><div class="cube"></div></div></div>
+          <div class="shadow"></div>
+          <span class="hint">[m] edit faces</span>
+        </div>
+      </div>
+
+      <p id="result" class="line result" aria-live="polite"></p>
+      <p class="line dim keys">[space] roll &nbsp;·&nbsp; [g] genre faces &nbsp;·&nbsp; [m] medium faces &nbsp;·&nbsp; click a die to edit it</p>
+    </section>
+  </main>
+
+  <aside id="drawer" class="drawer" aria-hidden="true" aria-label="Dice face editor">
+    <header class="bar">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab" data-tab="genre" role="tab">genre.conf</button>
+        <button type="button" class="tab" data-tab="medium" role="tab">medium.conf</button>
+      </div>
+      <span id="count" class="count"></span>
+      <button type="button" id="close" class="close" aria-label="Close editor">[x]</button>
+    </header>
+    <div class="drawer-body">
+      <ul id="list" class="list"></ul>
+      <div class="console">
+        <div id="log" class="log" aria-live="polite"></div>
+        <form id="prompt" class="prompt" autocomplete="off">
+          <label for="cmd" id="ps1" class="ps"></label>
+          <input id="cmd" type="text" spellcheck="false" autocapitalize="off" maxlength="60" aria-label="Command">
+        </form>
+      </div>
+    </div>
+  </aside>
+
+  <script src="app.js"></script>
+</body>
+</html>
